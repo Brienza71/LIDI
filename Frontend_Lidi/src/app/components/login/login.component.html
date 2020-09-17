@@ -1,0 +1,43 @@
+<div class=login-page>
+    <div>
+        <div id="text">
+            <img src="../../../assets/images/logo.png" width="80">
+            <p>Liga Desportiva Indaiatuba</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-sm-12 col-md-4">
+                <div id="cardLogin" class="container rounded">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend id="legend" class="display-4 text-center">Entrar na Liga
+                                <hr />
+                            </legend>
+                            <div class="form-group row">
+                                <!-- Linha Nome do Usuário -->
+                                <div class="col-sm-12 col-md-12">
+                                    <label id="userLabel" class="control-label" for="user">Nome de Usuário:</label>
+                                    <input id="user" name="user" type="text" placeholder="" class="form-control"
+                                        required #user>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <label id="passwordLabel" class="control-label" for="password">Senha:</label>
+                                    <input id="password" name="password" type="password" placeholder=""
+                                        class="form-control" required #password>
+                                </div>
+                            </div>
+                            <!-- ----------------------------------------------- SUBMIT ---------------------------------------------------- -->
+                            <div class="form-group row">
+                                <div class="col-sm-12 col-md-12">
+                                    <label class="control-label" for="submit"></label>
+                                    <button id="submit" type="submit" class="btn btn-primary"
+                                        (click)="login()">Entrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

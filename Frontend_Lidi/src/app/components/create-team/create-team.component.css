@@ -1,0 +1,91 @@
+#registerEquipe {
+    background-image: url('../../../assets/images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    padding: 10px;
+    right: 0;
+    top: 0;
+
+}
+
+#cadastrarTitle {
+    color: rgb(8, 77, 38);
+    font-family: 'delirium';
+    font-size: 4rem;
+}
+
+#dadosEquipe {
+    color: rgb(8, 77, 38);
+    font-family: 'highSchool';
+}
+
+#comissaoTecnica {
+    color: rgb(8, 77, 38);
+    font-family: 'highSchool';
+}
+
+#dadosResp {
+    color: rgb(8, 77, 38);
+    font-family: 'highSchool';
+}
+
+#logotipo {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#logotipoequipeLabel {
+    transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+#logotipoequipeLabel:hover {
+    transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    -o-transform: scale(1.15);
+    transform: scale(1.15);
+    transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+#cadastro {
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff
+}
+
+#cadastrar {
+    transition: all 0.1s linear;
+    border-color: rgba(8, 77, 38, 0.95);
+    background-color: rgba(8, 77, 38, 0.95);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+    margin-top: 1rem;
+    font-family: 'highSchool';
+}
+
+#cadastrar:hover {
+    transition: all 0.1s linear;
+    transform: scale(1.15);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media(max-width: 900px) {
+    .display-4 {
+        font-size: 50px;
+    }
+}

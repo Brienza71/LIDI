@@ -1,0 +1,108 @@
+.login-page {
+  background-image: url("../../../assets/images/background-login.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  position: fixed;
+  padding: 10px;
+  right: 0;
+  top: 0;
+}
+
+#text {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+#cardLogin {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  background-color: #ffffff;
+  box-shadow: 4px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#legend {
+  color: rgb(8, 77, 38);
+  font-family: "delirium";
+  font-size: 4rem !important;
+  font-weight: 100;
+  line-height: 1.2;
+  margin-bottom: 2%;
+}
+
+#user {
+  margin-bottom: 2%;
+}
+
+#userLabel {
+  color: rgb(8, 77, 38);
+  font-family: "highSchool";
+}
+
+#senha {
+  margin-bottom: 2%;
+}
+
+#passwordLabel {
+  color: rgb(8, 77, 38);
+  font-family: "highSchool";
+}
+
+#text {
+  font-family: "highSchool";
+  font-size: 1.5rem;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+#submit {
+  border-color: rgba(8, 77, 38, 0.95);
+  background-color: rgba(8, 77, 38, 0.95);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+  font-family: "highSchool";
+  margin-bottom: 2%;
+}
+
+#submit:hover {
+  transition: all 0.1s linear;
+  transform: scale(1.1);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    background-image: url("../../../assets/images/background-login.jpg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    position: absolute;
+    padding: 10px;
+    right: 0;
+    top: 0;
+  }
+
+  #legend {
+    font-size: 35px;
+  }
+}

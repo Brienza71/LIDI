@@ -1,0 +1,150 @@
+<div id="registeratleta">
+    <div>
+        <app-navbar></app-navbar>
+        <div id="cadastro" class="container rounded">
+            <br>
+            <form id="form" class="form-horizontal">
+                <fieldset>
+                    <legend class="display-4" id="cadastrarTitle">Cadastrar Atleta</legend>
+                    <br>
+
+                    <!-------------------------------------------------Linha One------------------------------------------------------>
+                    <legend id="dadosAtleta">Dados do Atleta</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha Foto do atleta-->
+                        <div class="col-sm-12 col-md-2 text-center">
+                            <input type="file" id="photo" name="photo" (change)="onChange($event)"
+                                (change)="preview(pictureatleta.files)" multiple required #pictureatleta>
+                            <label id="pictureatletaLabel" class="bd-placeholder-img rounded-circle" for="photo">
+                                <img id="perfil" class="bd-placeholder-img rounded-circle" width="140" height="140"
+                                    src="../../../assets/images/upload.png"></label>
+                        </div>
+
+                        <!--Linha Nome do atleta-->
+                        <div class="col-sm-12 col-md-4">
+                            <label class="control-label" for="Nome">Nome do atleta:</label>
+                            <input id="Nome" name="Nome" type="text" placeholder="" class="form-control" required
+                                #nomeatleta>
+                        </div>
+
+                        <!--Linha Data de Nascimento do atleta-->
+                        <div class="col-sm-12 col-md-3">
+                            <label class="control-label" for="data_nasc">Data de Nascimento:</label>
+                            <input id="data_nasc" name="data_nasc" type="date" placeholder="" class="form-control"
+                                required #data_nasc>
+                        </div>
+
+                        <!--Linha Cpf do atleta-->
+                        <div class="col-sm-12 col-md-3">
+                            <label class="control-label" for="CPF">CPF do atleta:</label>
+                            <input id="CPF" name="CPF" type="text" placeholder="" maxlength="15" class="form-control"
+                                [textMask]="{mask: maskCPF}" required #cpfatleta>
+                        </div>
+                    </div>
+
+                    <!-------------------------------------------------Linha Two------------------------------------------------------>
+                    <legend id="contatoAtleta">Contato do Atleta</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha Email do atleta-->
+                        <div class="col-md-6">
+                            <label class="control-label" for="Email">Email:</label>
+                            <input id="Email" name="Email" type="email" placeholder="" maxlength="100"
+                                class="form-control" required #emailatleta>
+                        </div>
+
+                        <!--Linha Telefone do atleta-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Telefone">Telefone do atleta:</label>
+                            <input id="Telefone" name="Telefone" type="tel" placeholder="" maxlength="45"
+                                [textMask]="{mask: maskTel}" class="form-control" required #telefoneatleta>
+                        </div>
+
+                        <!--Linha Celular do atleta-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Celular">Celular do atleta:</label>
+                            <input id="Celular" name="Celular" type="tel" placeholder="" maxlength="45"
+                                class="form-control" [textMask]="{mask: maskCel}" required #celularatleta>
+                        </div>
+                    </div>
+
+                    <!-------------------------------------------------Linha Three------------------------------------------------------>
+                    <legend id="enderecoAtleta">Endereço do Atleta</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha de Endereço do atleta-->
+                        <div class="col-md-6">
+                            <label class="control-label" for="Endereco">Endereço:</label>
+                            <input id="Endereco" name="Endereco" type="text" placeholder="" class="form-control"
+                                required #enderecoatleta>
+                        </div>
+
+                        <!--Linha Estado do atleta-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Estado">Estado:</label>
+                            <select id="Estado" name="Estado" class="form-control"
+                                (change)="onSelect($event.target.value)" #estadoatleta>
+                                <option value="0">Selecione o Estado</option>
+                                <option *ngFor="let state of states" value="{{state.nome}}">{{state.nome}}</option>
+                            </select>
+                        </div>
+
+                        <!--Linha Cidade do atleta-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Cidade">Cidade:</label>
+                            <select id="Cidade" name="Cidade" class="form-control" required #cidadeatleta>
+                                <option value="0">Selecione a Cidade</option>
+                                <option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-------------------------------------------------Linha Four------------------------------------------------------>
+                    <div>
+                        <legend id="dadosResp">Dados e Contato do Responsável</legend>
+                        <hr />
+                        <div class="form-group row">
+                            <!-- Linha Nome do Responsável -->
+                            <div class="col-md-3">
+                                <label class="control-label " for="nome_responsavel">Nome do Responsável</label>
+                                <input id="nome_responsavel" name="nome_responsavel" type="text" placeholder="" class="form-control"
+                                    required="" #nome_responsavel>
+                            </div>
+
+                            <!-- Linha Cpf do Responsável -->
+                            <div class="col-md-3">
+                                <label class="control-label" for="cpf_responsavel">CPF do Responsável</label>
+                                <input id="cpf_responsavel" name="cpf_responsavel" type="text" placeholder="" class="form-control"
+                                    [textMask]="{mask: maskCPF}" required="" #cpf_responsavel>
+                            </div>
+
+                            <!-- Linha Telefone do Responsável -->
+                            <div class="col-md-3">
+                                <label class="control-label" for="telefone_responsavel">Telefone do Responsável</label>
+                                <input id="telefone_responsavel" name="telefone_responsavel" type="tel" placeholder=""
+                                    class="form-control" [textMask]="{mask: maskTel}" required="" #telefone_responsavel>
+                            </div>
+
+                            <!-- Linha Celular do Responsável -->
+                            <div class="col-md-3">
+                                <label class="control-label" for="celular_responsavel">Celular do Responsável</label>
+                                <input id="celular_responsavel" name="celular_responsavel" type="tel" placeholder=""
+                                    class="form-control" [textMask]="{mask: maskCel}" required="" #celular_responsavel>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!------------------------------------------------- SUBMIT ------------------------------------------------------>
+                    <div class="form-group">
+                        <label class="control-label" for="cadastrar"></label>
+                        <button id="cadastrar" name="cadastrar" class="btn btn-primary"
+                            (click)="createAtleta()">Cadastrar</button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

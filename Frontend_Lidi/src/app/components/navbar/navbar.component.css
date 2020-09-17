@@ -1,0 +1,12 @@
+.color {
+    background-color: rgba(8, 77, 38, 0.95);
+}
+
+nav {
+    font-family: 'highschool';
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2)
+}
+
+#toggle {
+    border: none
+}

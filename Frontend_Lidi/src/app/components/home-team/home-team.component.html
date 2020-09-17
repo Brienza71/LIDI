@@ -1,0 +1,167 @@
+<div id="homePage">
+    <div>
+        <app-navbar></app-navbar>
+        <div id="updatePage" class="container">
+            <div>
+                <h4 style="margin: 0; display:flex; align-items:center">
+                    <img id="logo" src="../../../assets/images/logo.png" width="90" height="90">
+                    <span id="title" class="display-4">
+                        Equipes na Liga
+                    </span>
+                </h4>
+                <div id="titleMobileDIV">
+                    <h1 id="titleMobile" class="display-4">
+                        Equipes na Liga
+                    </h1>
+                </div>
+            </div>
+            <table class="table table-borderless table-hover rounded">
+                <thead>
+                    <tr id="tablehead" scope="row">
+                        <th scope="col" id="Nome">Nome da equipe </th>
+                        <th scope="col" id="Cnpj">CNPJ </th>
+                        <th scope="col" id="Empresa">Empresa </th>
+                        <th scope="col" id="Responsavel">Responsavel </th>
+                        <!-- ( I F ) -> C E L U L A R (S M A L L) -->
+                        <th scope="col" id="Editar">Editar</th>
+                        <th scope="col" id="Excluir">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="listagem" *ngFor="let equipe of equipes">
+                        <td id="Nome">{{equipe.nome}}</td>
+                        <td id="CnpjText">{{equipe.cnpj}}</td>
+                        <td id="Empresa">{{equipe.empresa}}</td>
+                        <td id="Responsavel">{{equipe.responsavel}}</td>
+                        <td id="Update">
+                            <button id="UpdateEdit" (click)="modal(equipe)">
+                                <i id="edit" class="material-icons" data-toggle="modal" data-target="#Updateequipe">
+                                    edit
+                                </i>
+                            </button>
+                        </td>
+                        <td id="delete">
+                            <button id="DeleteClear">
+                                <i id="clear" (click)="deleteequipe(equipe)" class="material-icons">
+                                    clear
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addequipe" routerLink="/createTeam" class="btn btn-primary">Nova Equipe</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Updateequipe" tabindex="-1" role="dialog" aria-labelledby="UpdateequipeTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div id="modal-header">
+                    <p class="display-4 text-center" id="UpdateequipeTitle">Editar equipe</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- CORPO DE INFORMAÇÕES DO MODAL DE UPDATE DOS Equipes -->
+                    <div id="registerequipe">
+                        <form class="form-horizontal" *ngFor="let equipe of equipeAtual">
+                            <fieldset>
+                                <!------------------------------------------------- One ------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!-- Foto do equipe-->
+                                    <div id="upload" class="col-sm-12 col-md-12 text-center">
+                                        <input type="file" id="logotipo" name="logotipo" (change)="onChange($event)"
+                                            (change)="preview(logotipoequipe.files)" multiple required #logotipoequipe>
+                                        <label id="logotipoequipeLabel" class="bd-placeholder-img rounded-circle"
+                                            for="logotipo">
+                                            <img id="perfil" class="bd-placeholder-img rounded-circle ml-auto"
+                                                width="140" height="140" [src]="profileIMG">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!-- Nome da equipe-->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="nome">Nome da Equipe:</label>
+                                        <input id="nome" name="Nome" type="text" class="form-control"
+                                            [value]="equipe.nome" required #nomeequipe>
+                                    </div>
+
+                                    <!-- Nome da Empresa -->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="empresa">Nome da Empresa:</label>
+                                        <input id="empresa" name="Empresa" type="text" class="form-control"
+                                            [value]="equipe.empresa" required #empresaequipe>
+                                    </div>
+
+                                    <!-- Cnpj da Equipe-->
+                                    <div class="col-sm-12 col-md-12">
+                                        <label class="control-label" for="cnpj">CNPJ da Equipe:</label>
+                                        <input id="cnpj" name="CNPJ" type="text" class="form-control cnpj-mask"
+                                            [textMask]="{mask: maskCNPJ}" [value]="equipe.cnpj" required #cnpjequipe>
+                                    </div>
+                                </div>
+
+                                <!------------------------------------------------- Two ------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!-- Nome do Responsavel-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="responsavel">Nome do Responsavel:</label>
+                                        <input id="responsavel" name="Responsavel" type="text" class="form-control"
+                                            [value]="equipe.responsavel" required #responsavelequipe>
+                                    </div>
+
+                                    <!-- Telefone do Responsavel-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="telefone">Celular do Responsavel:</label>
+                                        <input id="telefone" name="Telefone" type="tel" class="form-control"
+                                            [textMask]="{mask: maskCel}" [value]="equipe.telefone_responsavel" required
+                                            #telefoneequipe>
+                                    </div>
+                                </div>
+
+                                <!------------------------------------------------- Three ------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!-- Email do Responsavel -->
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="email">Email do Responsavel:</label>
+                                        <input id="email" name="Email" type="text" class="form-control"
+                                            [value]="equipe.email_responsavel" required #emailequipe>
+                                    </div>
+                                    <!-- Tecnico da equipe-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="tecnico">Técnico:</label>
+                                        <input id="tecnico" name="Tecnico" type="text" class="form-control"
+                                            [value]="equipe.tecnico" required #tecnicoequipe>
+                                    </div>
+                                    <!-- AuxTecnico da equipe-->
+                                    <div class=" col-md-6">
+                                        <label class="control-label" for="auxTecnico">Auxiliar Técnico:</label>
+                                        <input id="auxTecnico" name="auxTecnico" type="text" class="form-control"
+                                            [value]="equipe.auxTecnico" required #auxTecnicoequipe>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="massagista">Massagista:</label>
+                                        <input id="massagista" name="Massagista" type="text" class="form-control"
+                                            [value]="equipe.massagista" required #massagistaequipe>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div id="modal-footer">
+                                <button type="button" class="btn btn-primary" id="save"
+                                    (click)="updateequipe(equipe)">Salvar</button>
+                                <button type="button" class="btn btn-secondary" id="cancel"
+                                    data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,208 @@
+<div id="homePage">
+    <div>
+        <app-navbar></app-navbar>
+        <div id="updatePage" class="container">
+            <div>
+                <h4 style="margin: 0; display:flex; align-items:center">
+                    <img id="logo" src="../../../assets/images/logo.png" width="90" height="90">
+                    <span id="title" class="display-4">
+                        Atletas na Liga
+                    </span>
+                </h4>
+                <div id="titleMobileDIV">
+                    <h1 id="titleMobile" class="display-4">
+                        Atletas na Liga
+                    </h1>
+                </div>
+            </div>
+            <table class="table table-borderless table-hover rounded">
+                <thead>
+                    <tr id="tablehead" scope="row">
+                        <th scope="col" id="Nome">Nome do atleta </th>
+                        <th scope="col" id="Cpf">CPF </th>
+                        <th scope="col" id="Email">Email </th>
+                        <th scope="col" id="Celular">Celular </th>
+                        <th scope="col" id="Nascimento">Nascimento </th>
+                        <th scope="col" id="Telefone">Telefone </th>
+                        <!-- ( I F ) -> C E L U L A R (S M A L L) -->
+                        <th scope="col" id="Editar">Editar</th>
+                        <th scope="col" id="Excluir">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="listagem" *ngFor="let atleta of atletas">
+                        <td id="Nome">{{atleta.nome}}</td>
+                        <td id="Cpf">{{atleta.cpf}}</td>
+                        <td id="Email">{{atleta.email}}</td>
+                        <td id="Celular">{{atleta.celular}}</td>
+                        <td id="Nascimento">{{atleta.data_nasc}}</td>
+                        <td id="Telefone">{{atleta.telefone}}</td>
+                        <td id="Update"><button id="UpdateEdit" (click)="modal(atleta)"
+                                (click)="onSelect(atleta.estado)"><i id="edit" class="material-icons"
+                                    data-toggle="modal" data-target="#Updateatleta">edit</i></button></td>
+                        <td id="delete"><button id="DeleteClear"><i id="clear" (click)="deleteatleta(atleta)"
+                                    class="material-icons">clear</i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addatleta" routerLink="/create" class="btn btn-primary">Novo atleta</button>
+        </div>
+    </div>
+    <div class="modal fade" id="Updateatleta" tabindex="-1" role="dialog" aria-labelledby="UpdateatletaTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div id="modal-header">
+                    <p class="display-4 text-center" id="UpdateatletaTitle">Editar atleta</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- CORPO DE INFORMAÇÕES DO MODAL DE UPDATE DOS ATLETAS -->
+                    <div id="registeratleta">
+                        <form class="form-horizontal" *ngFor="let atleta of atletaAtual">
+                            <fieldset>
+                                <!-------------------------------------------------Linha One------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!--Linha Foto do atleta-->
+                                    <div class="col-sm-12 col-md-12 text-center">
+                                        <input type="file" id="photo" name="photo" (change)="onChange($event)"
+                                            (change)="preview(pictureatleta.files)" multiple required #pictureatleta>
+                                        <label id="pictureatletaLabel" class="bd-placeholder-img rounded-circle"
+                                            for="photo">
+                                            <img id="perfil" class="bd-placeholder-img rounded-circle ml-auto"
+                                                width="140" height="140" [src]="profileIMG">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!--Linha Nome do atleta-->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="nome">Nome do atleta:</label>
+                                        <input id="nome" name="Nome" type="text" class="form-control"
+                                            [value]="atleta.nome" required #nomeatleta>
+                                    </div>
+
+                                    <!--Linha Data de Nascimento do atleta-->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="date">Data de Nascimento:</label>
+                                        <input id="date" name="data_nasc" type="date" class="form-control"
+                                            [value]="atleta.data_nasc" required #data_nasc>
+                                    </div>
+
+                                    <!--Linha Cpf do atleta-->
+                                    <div class="col-sm-12 col-md-12">
+                                        <label class="control-label" for="cpf">CPF do atleta:</label>
+                                        <input id="cpf" name="CPF" type="text" class="form-control cpf-mask"
+                                            [textMask]="{mask: maskCPF}" [value]="atleta.cpf" required #cpfatleta>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------------------Linha Two------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!--Linha Email do atleta-->
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="email">Email:</label>
+                                        <input id="email" name="Email" type="email" class="form-control"
+                                            [value]="atleta.email" required #emailatleta>
+                                    </div>
+
+                                    <!--Linha Telefone do atleta-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="telefone">Telefone do atleta:</label>
+                                        <input id="telefone" name="Telefone" type="tel" class="form-control"
+                                            [textMask]="{mask: maskTel}" [value]="atleta.telefone" required
+                                            #telefoneatleta>
+                                    </div>
+
+                                    <!--Linha Celular do atleta-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="celular">Celular do atleta:</label>
+                                        <input id="celular" name="Celular" type="tel" class="form-control"
+                                            [textMask]="{mask: maskCel}" [value]="atleta.celular" required
+                                            #celularatleta>
+                                    </div>
+                                </div>
+
+                                <!-------------------------------------------------Linha Three------------------------------------------------------>
+                                <div class="form-group row">
+                                    <!--Linha da Rua do atleta-->
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="rua">Endereço:</label>
+                                        <input id="rua" name="Endereco" type="text" class="form-control"
+                                            [value]="atleta.endereco" required #enderecoatleta>
+                                    </div>
+                                    <!--Linha Estado do atleta-->
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="estado">Estado</label>
+                                        <select id="Estado" name="Estado" class="form-control"
+                                            (change)="onSelect($event.target.value)" (change)="updateChange()"
+                                            #estadoatleta>
+                                            <option [value]="atleta.estado" hidden selected="true">
+                                                {{atleta.estado}}
+                                            </option>
+                                            <option *ngFor="let state of states" [value]="state.nome">
+                                                {{state.nome}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--Linha Cidade do atleta-->
+                                    <div class=" col-md-6">
+                                        <label class="control-label" for="Cidade">Cidade:</label>
+                                        <select id="Cidade" name="Cidade" class="form-control" required #cidadeatleta>
+                                            <option [value]="atleta.cidade" hidden selected="true">
+                                                {{atleta.cidade}}
+                                            </option>
+                                            <option id="default" value="0">Selecione a Cidade</option>
+                                            <option *ngFor="let cidade of cidades" [value]="cidade.nome">
+                                                {{cidade.nome}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!-- Linha Nome do Responsável -->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label " for="nome_responsavel">Nome do Responsável</label>
+                                        <input id="nome_responsavel" name="nome_responsavel" type="text" placeholder=""
+                                            class="form-control" [value]="atleta.nome_responsavel" required #nome_responsavel>
+                                    </div>
+
+                                    <!-- Linha Cpf do Responsável -->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="cpf_responsavel">CPF do Responsável</label>
+                                        <input id="cpf_responsavel" name="cpf_responsavel" type="text" placeholder=""
+                                            class="form-control" [textMask]="{mask: maskCPF}" [value]="atleta.cpf_responsavel"
+                                            required #cpf_responsavel>
+                                    </div>
+
+                                    <!-- Linha Telefone do Responsável -->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="telefone_responsavel">Telefone do Responsável</label>
+                                        <input id="telefone_responsavel" name="telefone_responsavel" type="tel" placeholder=""
+                                            [textMask]="{mask: maskTel}" class="form-control"
+                                            [value]="atleta.telefone_responsavel" required #telefone_responsavel>
+                                    </div>
+
+                                    <!-- Linha Celular do Responsável -->
+                                    <div class="col-sm-12 col-md-6">
+                                        <label class="control-label" for="celular_responsavel">Celular do Responsável</label>
+                                        <input id="celular_responsavel" name="celular_responsavel" type="tel" placeholder=""
+                                            [textMask]="{mask: maskCel}" class="form-control"
+                                            [value]="atleta.celular_responsavel" required #celular_responsavel>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div id="modal-footer">
+                                <button type="button" class="btn btn-primary" id="save"
+                                    (click)="updateatleta(atleta)">Salvar</button>
+                                <button type="button" class="btn btn-secondary" id="cancel"
+                                    data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

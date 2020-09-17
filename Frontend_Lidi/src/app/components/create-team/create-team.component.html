@@ -1,0 +1,110 @@
+<div id="registerEquipe">
+    <div>
+        <app-navbar></app-navbar>
+        <div id="cadastro" class="container rounded">
+            <br>
+            <form id="form" class="form-horizontal">
+                <fieldset>
+                    <legend class="display-4" id="cadastrarTitle">Cadastrar Equipe</legend>
+                    <br>
+
+                    <!-------------------------------------------------Linha One------------------------------------------------------>
+                    <legend id="dadosEquipe">Dados da Equipe</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha Foto da Equipe-->
+                        <div class="col-sm-12 col-md-2 text-center">
+                            <input type="file" id="logotipo" name="logotipo" (change)="onChange($event)"
+                                (change)="preview(logotipoequipe.files)" multiple required #logotipoequipe>
+                            <label id="logotipoequipeLabel" class="bd-placeholder-img rounded-circle" for="logotipo">
+                                <img id="perfil" class="bd-placeholder-img rounded-circle ml-auto" width="140"
+                                    height="140" src="../../../assets/images/upload.png">
+                            </label>
+                        </div>
+
+                        <!--Linha Nome da Equipe-->
+                        <div class="col-sm-12 col-md-4">
+                            <label class="control-label" for="Nome">Nome da Equipe:</label>
+                            <input id="Nome" name="Nome" type="text" placeholder="" class="form-control" required
+                                #nomeequipe>
+                        </div>
+
+                        <!--Linha Cnpj da Equipe-->
+                        <div class="col-sm-12 col-md-3">
+                            <label class="control-label" for="CNPJ">CNPJ da Equipe:</label>
+                            <input id="CNPJ" name="CNPJ" type="text" placeholder="" class="form-control"
+                                [textMask]="{mask: maskCNPJ}" required #cnpjequipe>
+                        </div>
+
+                        <!--Linha Empresa-->
+                        <div class="col-sm-12 col-md-3">
+                            <label class="control-label" for="empresa">Empresa:</label>
+                            <input id="empresa" name="empresa" type="text" placeholder="" class="form-control" required
+                                #empresaequipe>
+                        </div>
+                    </div>
+
+                    <!-------------------------------------------------Linha Two------------------------------------------------------>
+                    <legend id="dadosResp">Dados do Responsável</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha Nome do Responsável-->
+                        <div class="col-md-6">
+                            <label class="control-label" for="responsavel">Nome do Responsável:</label>
+                            <input id="responsavel" name="responsavel" type="email" placeholder="" class="form-control"
+                                required #responsavelequipe>
+                        </div>
+
+                        <!--Linha Telefone do Responsavel-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Telefone">Celular do Responsável:</label>
+                            <input id="Telefone" name="Telefone" type="tel" placeholder="" maxlength="45"
+                                [textMask]="{mask: maskCel}" class="form-control" required #telefoneequipe>
+                        </div>
+
+                        <!--Linha Email do Responsável-->
+                        <div class="col-md-3">
+                            <label class="control-label" for="Celular">Email do Responsável:</label>
+                            <input id="email" name="email" type="email" placeholder="" class="form-control" required
+                                #emailequipe>
+                        </div>
+                    </div>
+
+                    <!-------------------------------------------------Linha Three------------------------------------------------------>
+                    <legend id="comissaoTecnica">Comissão Técnica</legend>
+                    <hr />
+                    <div class="form-group row">
+                        <!--Linha Tecnico da Equipe-->
+                        <div class="col-md-4">
+                            <label class="control-label" for="tecnico">Técnico:</label>
+                            <input id="tecnico" name="tecnico" type="text" placeholder="" class="form-control" required
+                                #tecnicoequipe>
+                        </div>
+
+                        <!--Linha AuxTecnico da Equipe-->
+                        <div class="col-md-4">
+                            <label class="control-label" for="auxTecnico">Auxiliar Técnico:</label>
+                            <input id="auxTecnico" name="auxTecnico" type="text" placeholder="" class="form-control"
+                                required #auxTecnicoequipe>
+                        </div>
+
+                        <!--Linha Massagista da Equipe-->
+                        <div class="col-md-4">
+                            <label class="control-label" for="massagista">Massagista:</label>
+                            <input id="massagista" name="massagista" type="text" placeholder="" class="form-control"
+                                required #massagistaequipe>
+                        </div>
+                    </div>
+
+                    <!------------------------------------------------- SUBMIT ------------------------------------------------------>
+                    <div class="form-group">
+                        <label class="control-label" for="cadastrar"></label>
+                        <button id="cadastrar" name="cadastrar" class="btn btn-primary"
+                            (click)="createEquipe()">Cadastrar</button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
