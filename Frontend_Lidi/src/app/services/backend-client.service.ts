@@ -1,9 +1,10 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Atleta } from "../models/atleta";
 import { Equipe } from '../models/equipe';
 
-const URL = "http://fiecdev.kinghost.net:21525"
+const URL = environment.api;
 
 @Injectable({
   providedIn: "root"

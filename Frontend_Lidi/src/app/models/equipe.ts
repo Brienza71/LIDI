@@ -4,10 +4,10 @@ export interface Equipe {
     cnpj: string,
     nome: string,
     empresa: string,
-    logotipo: string,
+    url_logotipo: string,
     responsavel: string,
-    telefoneResp: string,
-    emailResp: string,
+    telefone_responsavel: string,
+    email_responsavel: string,
     tecnico: string,
     auxTecnico: string,
     massagista: string

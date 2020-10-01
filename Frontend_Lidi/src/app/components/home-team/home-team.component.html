@@ -28,6 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr id="listagem" *ngFor="let equipe of equipes">
                         <td id="Nome">{{equipe.nome}}</td>
                         <td id="CnpjText">{{equipe.cnpj}}</td>
@@ -72,8 +73,8 @@
                                 <div class="form-group row">
                                     <!-- Foto do equipe-->
                                     <div id="upload" class="col-sm-12 col-md-12 text-center">
-                                        <input type="file" id="logotipo" name="logotipo" (change)="onChange($event)"
-                                            (change)="preview(logotipoequipe.files)" multiple required #logotipoequipe>
+                                        <input type="file" id="url_logotipo" name="logotipo" (change)="onChange($event)"
+                                            (change)="preview(url_logotipoequipe.files)" multiple required #url_logotipoequipe>
                                         <label id="logotipoequipeLabel" class="bd-placeholder-img rounded-circle"
                                             for="logotipo">
                                             <img id="perfil" class="bd-placeholder-img rounded-circle ml-auto"
@@ -117,7 +118,7 @@
                                     <div class="col-md-6">
                                         <label class="control-label" for="telefone">Celular do Responsavel:</label>
                                         <input id="telefone" name="Telefone" type="tel" class="form-control"
-                                            [textMask]="{mask: maskCel}" [value]="equipe.telefone_responsavel" required
+                                            [textMask]="{mask: maskCel}" [value]="equipe.telefoneResp" required
                                             #telefoneequipe>
                                     </div>
                                 </div>
@@ -128,7 +129,7 @@
                                     <div class="col-md-12">
                                         <label class="control-label" for="email">Email do Responsavel:</label>
                                         <input id="email" name="Email" type="text" class="form-control"
-                                            [value]="equipe.email_responsavel" required #emailequipe>
+                                            [value]="equipe.emailResp" required #emailequipe>
                                     </div>
                                     <!-- Tecnico da equipe-->
                                     <div class="col-md-6">

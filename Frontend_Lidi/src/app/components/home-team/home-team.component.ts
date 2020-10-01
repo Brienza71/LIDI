@@ -44,6 +44,8 @@ export class HomeTeamComponent implements OnInit {
     }
     this.service.listarEquipes().subscribe(res => {
       this.equipes = res["equipes"];
+      console.log(res['equipes'])
+
       for(let i=0; i<res["equipes"].length; i++){
         res["equipes"][i]["cnpj"] = res["equipes"][i]["cnpj"].replace(/(\d{2})?(\d{3})?(\d{3})?(\d{4})?(\d{2})/, "$1.$2.$3/$4-$5")
       }
@@ -53,7 +55,7 @@ export class HomeTeamComponent implements OnInit {
   @ViewChildren("nomeequipe") nome;
   @ViewChildren("cnpjequipe") cnpj1;
   @ViewChildren("empresaequipe") empresa;
-  @ViewChildren("logotipoequipe") logotipo;
+  @ViewChildren("url_logotipoequipe") url_logotipo;
   @ViewChildren("responsavelequipe") responsavel;
   @ViewChildren("telefoneequipe") telefone;
   @ViewChildren("emailequipe") email;
@@ -70,7 +72,7 @@ export class HomeTeamComponent implements OnInit {
     const cnpj4 = cnpj3.replace('-', '')
     const cnpj5 = cnpj4.replace('/', '')
     this.backend.profilePicEquipe(cnpj5).subscribe(res => {
-      this.profileIMG = res.url;
+      this.profileIMG = res['url'];
     });
   }
 
@@ -84,7 +86,7 @@ export class HomeTeamComponent implements OnInit {
       nome: this.nome.first.nativeElement.value,
       cnpj: cnpj6,
       empresa: this.empresa.first.nativeElement.value,
-      logotipo: this.logotipo.first.nativeElement.value,
+      url_logotipo: this.url_logotipo.first.nativeElement.value,
       responsavel: this.responsavel.first.nativeElement.value,
       telefone_responsavel: this.telefone.first.nativeElement.value,
       email_responsavel: this.email.first.nativeElement.value,
@@ -94,8 +96,8 @@ export class HomeTeamComponent implements OnInit {
     };
     this.equipeAtual = [];
     this.equipeAtual.push(equipe);
-    if (data.logotipo == "") {
-      data.logotipo = equipe.logotipo;
+    if (data.url_logotipo == "") {
+      data.url_logotipo = equipe.url_logotipo;
     }
     if (
       data.nome != "" &&
@@ -109,7 +111,7 @@ export class HomeTeamComponent implements OnInit {
       data.massagista != ""
     ) {
       this.backend.updateequipe(data, equipe.id).subscribe(res => {
-        if (res.status == 200) {
+        if (res['status'] == 200) {
           Swal.fire({
             title: "Sucesso!",
             text: "A Equipe foi Editada!",
@@ -151,7 +153,7 @@ export class HomeTeamComponent implements OnInit {
         this.equipeAtual = [];
         this.equipeAtual.push(equipe);
         this.backend.deleteequipe(equipe.id).subscribe(res => {
-          if (res.status == 200) {
+          if (res['status'] == 200) {
             Swal.fire({
               title: "Sucesso!",
               text: "A Equipe foi Excluida!",
@@ -176,7 +178,7 @@ export class HomeTeamComponent implements OnInit {
       this.files.add(selectedFiles[i]);
     }
     const fileName = fileNames.join(", ");
-    return (document.getElementById("logotipo").innerHTML = fileName);
+    return (document.getElementById("url_logotipo").innerHTML = fileName);
   }
 
   preview(files) {

@@ -3,6 +3,7 @@ export interface Atleta {
   id: number,
   cpf: string,
   nome: string,
+  rg: string,
   data_nasc: Date,
   email: string,
   telefone: string,
@@ -11,8 +12,8 @@ export interface Atleta {
   cidade: string,
   estado: string,
   foto: string,
-  nomeResp: string,
-  cpfResp: string,
-  telefoneResp: string,
-  celularResp: string
+  nome_responsavel: string,
+  cpf_responsavel: string,
+  telefone_responsavel: string,
+  celular_responsavel: string
 }

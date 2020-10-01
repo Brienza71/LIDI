@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.backend.login(data).subscribe(res => {
       if (data.user == this.session.userName && data.password == this.session.password) {
         const user = data.user
-        localStorage.setItem(this.session.token, res.json().token)
+        localStorage.setItem(this.session.token, res['token'])
         this.router.navigate(['home'])
         Swal.fire({
           type: 'success',

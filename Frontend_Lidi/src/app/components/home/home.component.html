@@ -20,6 +20,7 @@
                     <tr id="tablehead" scope="row">
                         <th scope="col" id="Nome">Nome do atleta </th>
                         <th scope="col" id="Cpf">CPF </th>
+                        <th scope="col" id="RG">RG </th>
                         <th scope="col" id="Email">Email </th>
                         <th scope="col" id="Celular">Celular </th>
                         <th scope="col" id="Nascimento">Nascimento </th>
@@ -33,6 +34,7 @@
                     <tr id="listagem" *ngFor="let atleta of atletas">
                         <td id="Nome">{{atleta.nome}}</td>
                         <td id="Cpf">{{atleta.cpf}}</td>
+                        <td id="RG">{{atleta.rg}}</td>
                         <td id="Email">{{atleta.email}}</td>
                         <td id="Celular">{{atleta.celular}}</td>
                         <td id="Nascimento">{{atleta.data_nasc}}</td>
@@ -95,6 +97,12 @@
                                         <label class="control-label" for="cpf">CPF do atleta:</label>
                                         <input id="cpf" name="CPF" type="text" class="form-control cpf-mask"
                                             [textMask]="{mask: maskCPF}" [value]="atleta.cpf" required #cpfatleta>
+                                    </div>
+                                    <!--Linha Rg do atleta-->
+                                    <div class="col-sm-12 col-md-12">
+                                        <label class="control-label" for="RG">RG do atleta:</label>
+                                        <input id="RG" name="RG" type="text" class="form-control rg-mask"
+                                            [textMask]="{mask: maskRG}" [value]="atleta.rg" required #rgatleta>
                                     </div>
                                 </div>
 

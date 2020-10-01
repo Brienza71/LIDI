@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   public maskCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public maskTel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   public maskCel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskRG = [/\d/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/];
 
   private session = Login
 
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit {
   @ViewChildren('pictureatleta') picture;
   @ViewChildren('data_nasc') data_nasc;
   @ViewChildren('cpfatleta') cpf;
+  @ViewChildren('rgatleta') rg;
   @ViewChildren('emailatleta') email;
   @ViewChildren('telefoneatleta') telefone;
   @ViewChildren('celularatleta') celular;
@@ -72,7 +74,7 @@ export class HomeComponent implements OnInit {
     this.atletaAtual.push(atleta)
     atleta.data_nasc = atleta.data_nasc.split('/').reverse().join('-')
     this.backend.profilePic(atleta.cpf).subscribe(res => {
-      this.profileIMG = res.url
+      this.profileIMG = res['url']
     })
   }
 
@@ -91,6 +93,7 @@ export class HomeComponent implements OnInit {
       data_nasc: this.data_nasc.first.nativeElement.value,
       foto: this.picture.first.nativeElement.value,
       cpf: this.cpf.first.nativeElement.value,
+      rg: this.rg.first.nativeElement.value,
       email: this.email.first.nativeElement.value,
       telefone: this.telefone.first.nativeElement.value,
       celular: this.celular.first.nativeElement.value,
@@ -117,18 +120,19 @@ export class HomeComponent implements OnInit {
       })
     } else {
       this.backend.updateatleta(data, atleta.id).subscribe(res => {
-        if (res.status == 200) {
+        if (res["status"] == 200) {
           Swal.fire({
-            title: 'Sucesso!',
-            text: 'O Atleta foi Editado!',
-            type: 'success',
+            title: "Sucesso!",
+            text: "O Atleta foi Editado!",
+            type: "success",
             showConfirmButton: false,
-          })
+          });
           if (this.files && this.files.size > 0) {
-            this.service.upload(this.files, data.cpf).subscribe(res => {
-            });
+            this.service.upload(this.files, data.cpf).subscribe((res) => {});
           }
-          setTimeout(function () { window.location.reload() }, 800);
+          setTimeout(function () {
+            window.location.reload();
+          }, 800);
         }
       })
     }
@@ -149,7 +153,7 @@ export class HomeComponent implements OnInit {
         this.atletaAtual = []
         this.atletaAtual.push(atleta)
         this.backend.deleteatleta(atleta.id).subscribe(res => {
-          if (res.status == 200) {
+          if (res['status'] == 200) {
             Swal.fire({
               title: 'Sucesso!',
               text: 'O Atleta foi Excluido!',

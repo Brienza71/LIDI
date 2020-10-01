@@ -40,7 +40,7 @@ export class CreateTeamComponent implements OnInit {
   @ViewChild("nomeequipe", { static: true }) nome;
   @ViewChild("cnpjequipe", { static: true }) cnpj1;
   @ViewChild("empresaequipe", { static: true }) empresa;
-  @ViewChild("logotipoequipe", { static: true }) logotipo;
+  @ViewChild("url_logotipoequipe", { static: true }) url_logotipo;
   @ViewChild("responsavelequipe", { static: true }) responsavel;
   @ViewChild("telefoneequipe", { static: true }) telefone_responsavel;
   @ViewChild("emailequipe", { static: true }) email_responsavel;
@@ -58,7 +58,7 @@ export class CreateTeamComponent implements OnInit {
       nome: this.nome.nativeElement.value,
       cnpj: cnpj6,
       empresa: this.empresa.nativeElement.value,
-      logotipo: this.logotipo.nativeElement.value,
+      url_logotipo: this.url_logotipo.nativeElement.value,
       responsavel: this.responsavel.nativeElement.value,
       telefone_responsavel: this.telefone_responsavel.nativeElement.value,
       email_responsavel: this.email_responsavel.nativeElement.value,
@@ -69,9 +69,9 @@ export class CreateTeamComponent implements OnInit {
     let cnpj = {
       cnpj: cnpj6
     }
-    if (data.nome != "" && data.logotipo != "" && data.cnpj != "" && data.empresa != "" && data.responsavel != "" && data.telefone_responsavel != "" && data.email_responsavel != "" && data.tecnico != "" && data.auxTecnico != "" && data.massagista != "") {
+    if (data.nome != "" && data.url_logotipo != "" && data.cnpj != "" && data.empresa != "" && data.responsavel != "" && data.telefone_responsavel != "" && data.email_responsavel != "" && data.tecnico != "" && data.auxTecnico != "" && data.massagista != "") {
       this.backend.verificacnpj(cnpj).subscribe(res => {
-        if (res.json().result == 1) {
+        if (res['result'] == 1) {
           Swal.fire({
             type: 'warning',
             title: 'Erro!',
@@ -83,7 +83,7 @@ export class CreateTeamComponent implements OnInit {
           if (this.files && this.files.size > 0) {
             this.service.uploadEquipe(this.files, data.cnpj).subscribe(res => { });
             this.backend.createequipe(data).subscribe(res => {
-              if (res.status == 200) {
+              if (res['status'] == 200) {
                 Swal.fire({
                   type: 'success',
                   title: 'Sucesso!',
@@ -124,7 +124,7 @@ export class CreateTeamComponent implements OnInit {
       this.files.add(selectedFiles[i]);
     }
     const fileName = fileNames.join(", ");
-    return (document.getElementById("logotipo").innerHTML = fileName);
+    return (document.getElementById("url_logotipo").innerHTML = fileName);
   }
 
   preview(files) {

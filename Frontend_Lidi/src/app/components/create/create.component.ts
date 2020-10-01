@@ -21,6 +21,7 @@ export class CreateComponent implements OnInit {
   public maskCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public maskTel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   public maskCel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskRG = [/\d/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/];
 
   private session = Login
 
@@ -47,6 +48,7 @@ export class CreateComponent implements OnInit {
 
   @ViewChild('nomeatleta', { static: true }) nome;
   @ViewChild('pictureatleta', { static: true }) picture;
+  @ViewChild('rgatleta', { static: true }) rg;
   @ViewChild('data_nasc', { static: true }) data_nasc;
   @ViewChild('cpfatleta', { static: true }) cpf;
   @ViewChild('emailatleta', { static: true }) email;
@@ -63,6 +65,7 @@ export class CreateComponent implements OnInit {
   createAtleta() {
     let data = {
       nome: this.nome.nativeElement.value,
+      rg: this.rg.nativeElement.value,
       data_nasc: this.data_nasc.nativeElement.value,
       foto: this.picture.nativeElement.value,
       cpf: this.cpf.nativeElement.value,
@@ -80,38 +83,38 @@ export class CreateComponent implements OnInit {
     let cpf = {
       cpf: this.cpf.nativeElement.value
     }
-    if (data.nome != "" && data.foto != "" && data.data_nasc != "" && data.cpf != "" && data.email != "" && data.telefone != "" && data.celular != "" && data.endereco != "" && data.cidade != "0" && data.estado != "0") {
+    if (data.nome != "" &&  data.rg != "" && data.foto != "" && data.data_nasc != "" && data.cpf != "" && data.email != "" && data.telefone != "" && data.celular != "" && data.endereco != "" && data.cidade != "0" && data.estado != "0") {
       this.backend.verificacpf(cpf).subscribe(res => {
-        if (res.json().result == 1) {
+        if (res["result"] == 1) {
           Swal.fire({
-            type: 'warning',
-            title: 'Erro!',
-            text: 'Esse CPF já foi Cadastrado!',
+            type: "warning",
+            title: "Erro!",
+            text: "Esse CPF já foi Cadastrado!",
             timer: 1000,
-            showConfirmButton: false
-          })
+            showConfirmButton: false,
+          });
         } else {
           if (this.files && this.files.size > 0) {
-            this.service.upload(this.files, data.cpf).subscribe(res => { });
-            this.backend.createatleta(data).subscribe(res => {
-              if (res.status == 200) {
+            this.service.upload(this.files, data.cpf).subscribe((res) => {});
+            this.backend.createatleta(data).subscribe((res) => {
+              if (res["status"] == 200) {
                 Swal.fire({
-                  type: 'success',
-                  title: 'Sucesso!',
-                  text: 'O Atleta foi Cadastrado!',
+                  type: "success",
+                  title: "Sucesso!",
+                  text: "O Atleta foi Cadastrado!",
                   timer: 1000,
-                  showConfirmButton: false
+                  showConfirmButton: false,
                 });
-                this.router.navigate(['home']);
+                this.router.navigate(["home"]);
               } else {
                 Swal.fire({
-                  type: 'warning',
-                  title: 'Atenção!',
-                  text: 'Não foi Possível Realizar o Cadastro!',
+                  type: "warning",
+                  title: "Atenção!",
+                  text: "Não foi Possível Realizar o Cadastro!",
                   timer: 1000,
-                })
+                });
               }
-            })
+            });
           }
         }
       })

@@ -1,13 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
+
 
 const URL = "http://fiecdev.kinghost.net:21525";
+//const URL = "http://localhost:3000";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class BackendService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   login(data) {
     return this.http.post(`${URL}/session/login`, data);
