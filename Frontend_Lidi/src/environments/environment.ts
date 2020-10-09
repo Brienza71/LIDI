@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: "http://fiecdev.kinghost.net:21525"
+  api: "http://localhost:3000"
+  // api: "http://fiecdev.kinghost.net:21525"
 };
 
 

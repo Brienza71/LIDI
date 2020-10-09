@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 
-const URL = "http://fiecdev.kinghost.net:21525";
-//const URL = "http://localhost:3000";
+// const URL = "http://fiecdev.kinghost.net:21525";
+const URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: "root",

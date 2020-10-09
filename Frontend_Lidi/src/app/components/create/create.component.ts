@@ -1,3 +1,4 @@
+import { Equipe } from './../../models/equipe';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend.service';
@@ -31,8 +32,12 @@ export class CreateComponent implements OnInit {
   atletas: Atleta[];
   atletaAtual: Atleta[];
 
+  equipes: Equipe[];
+
+
   public cities = cidades
   public states = estados
+ 
 
   imgURL: any;
   public imagePath;
@@ -44,7 +49,11 @@ export class CreateComponent implements OnInit {
     } else {
       this.router.navigate([''])
     }
-  }
+    this.service.listarEquipes().subscribe(res => {
+      this.equipes = res["equipes"];
+      console.log(res['equipes'])
+    })
+  };
 
   @ViewChild('nomeatleta', { static: true }) nome;
   @ViewChild('pictureatleta', { static: true }) picture;
@@ -78,12 +87,14 @@ export class CreateComponent implements OnInit {
       nome_responsavel: this.nome_responsavel.nativeElement.value,
       cpf_responsavel: this.cpf_responsavel.nativeElement.value,
       telefone_responsavel: this.telefone_responsavel.nativeElement.value,
-      celular_responsavel: this.celular_responsavel.nativeElement.value
+      celular_responsavel: this.celular_responsavel.nativeElement.value,
     }
     let cpf = {
       cpf: this.cpf.nativeElement.value
     }
-    if (data.nome != "" &&  data.rg != "" && data.foto != "" && data.data_nasc != "" && data.cpf != "" && data.email != "" && data.telefone != "" && data.celular != "" && data.endereco != "" && data.cidade != "0" && data.estado != "0") {
+    if (data.nome != "" &&  data.rg != "" && data.foto != "" && data.data_nasc != "" && data.cpf != "" 
+    && data.email != "" && data.telefone != "" && data.celular != "" && data.endereco != "" && data.cidade != "0"
+     && data.estado != "0") {
       this.backend.verificacpf(cpf).subscribe(res => {
         if (res["result"] == 1) {
           Swal.fire({

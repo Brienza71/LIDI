@@ -4,7 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { Atleta } from "../models/atleta";
 import { Equipe } from '../models/equipe';
 
-const URL = environment.api;
+// const URL = environment.api;
+const URL = "http://localhost:3000";
 
 @Injectable({
   providedIn: "root"

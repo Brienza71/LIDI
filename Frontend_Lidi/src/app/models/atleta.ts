@@ -15,5 +15,6 @@ export interface Atleta {
   nome_responsavel: string,
   cpf_responsavel: string,
   telefone_responsavel: string,
-  celular_responsavel: string
+  celular_responsavel: string,
+  id_equipe: number,
 }
