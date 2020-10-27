@@ -50,10 +50,9 @@
                         </div>
 
                         <!--Linha da Equipe-->
-                        
                             <div class="col-sm-12 col-md-5">
                                 <label for="equipe_atleta">Equipe do Atleta</label>
-                                <select id="equipe_atleta" style="width: 50%;"class="form-control mb-4">
+                                <select id="equipe_atleta" style="width: 50%;"class="form-control mb-4" required #equipe_atleta>
                                     <option value="0">Selecione a Equipe</option>
                                     <option *ngFor="let equipe of equipes" value="{{equipe.id}}">{{equipe.nome}}</option>
                               </select>

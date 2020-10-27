@@ -70,6 +70,7 @@ export class CreateComponent implements OnInit {
   @ViewChild('cpf_responsavel', { static: true }) cpf_responsavel;
   @ViewChild('telefone_responsavel', { static: true }) telefone_responsavel;
   @ViewChild('celular_responsavel', { static: true }) celular_responsavel;
+  @ViewChild('equipe_atleta', { static: true }) id_equipe;
 
   createAtleta() {
     let data = {
@@ -88,6 +89,7 @@ export class CreateComponent implements OnInit {
       cpf_responsavel: this.cpf_responsavel.nativeElement.value,
       telefone_responsavel: this.telefone_responsavel.nativeElement.value,
       celular_responsavel: this.celular_responsavel.nativeElement.value,
+      id_equipe: this.id_equipe.nativeElement.value,
     }
     let cpf = {
       cpf: this.cpf.nativeElement.value

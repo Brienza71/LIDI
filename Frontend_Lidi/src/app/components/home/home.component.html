@@ -36,7 +36,7 @@
                         <td id="Nome">{{atleta.nome}}</td>
                         <td id="Cpf">{{atleta.cpf}}</td>
                         <td id="RG">{{atleta.rg}}</td>
-                        <td id="equipe_atleta">{{atleta.id_equipe}}</td>
+                        <td id="equipe_atleta">{{getNomeEquipe(atleta.id_equipe)}}</td>
                         <td id="Email">{{atleta.email}}</td>
                         <td id="Celular">{{atleta.celular}}</td>
                         <td id="Nascimento">{{atleta.data_nasc}}</td>
@@ -105,6 +105,14 @@
                                         <label class="control-label" for="RG">RG do atleta:</label>
                                         <input id="RG" name="RG" type="text" class="form-control rg-mask"
                                             [textMask]="{mask: maskRG}" [value]="atleta.rg" required #rgatleta>
+                                    </div>
+                                    <!--Linha da Equipe-->
+                                     <div class="col-sm-12 col-md-5">
+                                        <label for="equipe_atleta">Equipe do Atleta</label>
+                                        <select id="equipe_atleta" style="width: 130%;"class="form-control mb-4">
+                                            <option value="0">Selecione a Equipe</option>
+                                            <option *ngFor="let equipe of equipes" [value]="atleta.id_equipe" >{{equipe.nome}}</option>
+                                        </select>
                                     </div>
                                 </div>
 

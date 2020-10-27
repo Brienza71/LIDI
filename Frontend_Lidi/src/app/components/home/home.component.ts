@@ -1,3 +1,4 @@
+import { Equipe } from './../../models/equipe';
 import { Component, OnInit, ViewChildren } from '@angular/core'
 import { Router } from '@angular/router'
 import Swal from 'sweetalert2'
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   public maskCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public maskTel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  public maskCel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  public maskCel = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/,/\d/];
   public maskRG = [/\d/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/];
 
   private session = Login
@@ -32,6 +33,8 @@ export class HomeComponent implements OnInit {
 
   atletas: Atleta[]
   atletaAtual: Atleta[]
+
+  equipes: Equipe[];
 
   public cities = cidades
   public states = estados
@@ -50,8 +53,14 @@ export class HomeComponent implements OnInit {
     }
     this.service.listarAtletas().subscribe(res => {
       this.atletas = res['atletas']
+      console.log(this.atletas)
+    })
+    this.service.listarEquipes().subscribe(res => {
+      this.equipes = res['equipes']
+      console.log(this.equipes)
     })
   }
+
 
   @ViewChildren('nomeatleta') nome;
   @ViewChildren('pictureatleta') picture;
@@ -68,6 +77,8 @@ export class HomeComponent implements OnInit {
   @ViewChildren('cpf_responsavel') cpf_responsavel;
   @ViewChildren('telefone_responsavel') telefone_responsavel;
   @ViewChildren('celular_responsavel') celular_responsavel;
+  
+
 
   modal(atleta) {
     this.atletaAtual = []
@@ -77,6 +88,21 @@ export class HomeComponent implements OnInit {
       this.profileIMG = res['url']
     })
   }
+
+
+  getNomeEquipe(id_equipe){
+    const eqp = this.equipes.find(
+      equipe => id_equipe == equipe.id
+    )
+    if(eqp == undefined) {
+       return ("Equipe não encontrada.")
+    } 
+    else {
+      return eqp.nome
+    }
+  }
+
+
 
   onSelect(stateName) {
     this.cidades = this.cities.filter((item) => item.estado == stateName)
@@ -104,6 +130,7 @@ export class HomeComponent implements OnInit {
       cpf_responsavel: this.cpf_responsavel.first.nativeElement.value,
       telefone_responsavel: this.telefone_responsavel.first.nativeElement.value,
       celular_responsavel: this.celular_responsavel.first.nativeElement.value
+      
     }
     this.atletaAtual = [];
     this.atletaAtual.push(atleta);
